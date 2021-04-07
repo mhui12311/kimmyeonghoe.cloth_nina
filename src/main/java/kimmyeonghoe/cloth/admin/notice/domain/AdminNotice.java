@@ -9,10 +9,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Notice {
+public class AdminNotice {
 	private int noticeNum;
-	   private String title;
-	   private String content;
-	   @JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
-	   private LocalDate regDate;
+	private String title;
+	private String content;
+	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
+	private LocalDate regDate;
 }

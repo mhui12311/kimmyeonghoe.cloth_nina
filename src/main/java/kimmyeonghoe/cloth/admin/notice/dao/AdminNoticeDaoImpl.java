@@ -5,35 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kimmyeonghoe.cloth.admin.notice.dao.map.NoticeMap;
-import kimmyeonghoe.cloth.admin.notice.domain.Notice;
+import kimmyeonghoe.cloth.admin.notice.dao.map.AdminNoticeMap;
+import kimmyeonghoe.cloth.admin.notice.domain.AdminNotice;
 
-@Repository("noticeDao")
-public class NoticeDaoImpl implements NoticeDao{
-	@Autowired private NoticeMap noticeMap;
-	
+@Repository
+public class AdminNoticeDaoImpl implements AdminNoticeDao{
+	@Autowired private AdminNoticeMap noticeMap;
+
 	@Override
-	public List<Notice> selectNotices() {
-		return noticeMap.selectnotices();
+	public List<AdminNotice> selectNotices() {
+		return noticeMap.selectNotices();
 	}
-	
+
 	@Override
-	public int insertNotice(Notice notice) {
+	public int insertNotice(AdminNotice notice) {
 		return noticeMap.insertNotice(notice);
 	}
-	
+
 	@Override
-	public int updateNotice(Notice notice) {
+	public int updateNotice(AdminNotice notice) {
 		return noticeMap.updateNotice(notice);
 	}
-	
+
 	@Override
 	public int deleteNotice(int noticeNum) {
 		return noticeMap.deleteNotice(noticeNum);
-	}
-	
-	@Override
-	public Notice searchNotice(int noticeNum) {
-		return noticeMap.searchNotice(noticeNum);
 	}
 }

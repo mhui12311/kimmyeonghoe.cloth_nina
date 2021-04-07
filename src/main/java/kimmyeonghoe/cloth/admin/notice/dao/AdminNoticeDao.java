@@ -2,12 +2,11 @@ package kimmyeonghoe.cloth.admin.notice.dao;
 
 import java.util.List;
 
-import kimmyeonghoe.cloth.admin.notice.domain.Notice;
+import kimmyeonghoe.cloth.admin.notice.domain.AdminNotice;
 
-public interface NoticeDao {
-	List<Notice> selectNotices();
-	int insertNotice(Notice Notice);
-	int updateNotice(Notice Notice);
-	int deleteNotice(int NoticeNum);
-	Notice searchNotice(int NoticeNum);
+public interface AdminNoticeDao {
+	List<AdminNotice> selectNotices();
+	int insertNotice(AdminNotice notice);
+	int updateNotice(AdminNotice notice);
+	int deleteNotice(int noticeNum);
 }

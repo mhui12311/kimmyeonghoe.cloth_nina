@@ -2,12 +2,13 @@ package kimmyeonghoe.cloth.admin.notice.dao.map;
 
 import java.util.List;
 
-import kimmyeonghoe.cloth.admin.notice.domain.Notice;
+import org.apache.ibatis.annotations.Param;
 
-public interface NoticeMap {
-	List<Notice> selectnotices();
-	int insertNotice(Notice notice);
-	int updateNotice(Notice notice);
-	int deleteNotice(int noticeNum);
-	Notice searchNotice(int noticeNum);
+import kimmyeonghoe.cloth.admin.notice.domain.AdminNotice;
+
+public interface AdminNoticeMap {
+	List<AdminNotice> selectNotices();
+	int insertNotice(AdminNotice notice);
+	int updateNotice(AdminNotice notice);
+	int deleteNotice(@Param("noticeNum") int noticeNum);
 }

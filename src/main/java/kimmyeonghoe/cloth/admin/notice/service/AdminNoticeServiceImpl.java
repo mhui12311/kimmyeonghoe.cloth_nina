@@ -5,35 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kimmyeonghoe.cloth.admin.cloth.dao.ClothDao;
-import kimmyeonghoe.cloth.admin.cloth.domain.Cloth;
+import kimmyeonghoe.cloth.admin.notice.dao.AdminNoticeDao;
+import kimmyeonghoe.cloth.admin.notice.domain.AdminNotice;
 
 @Service
-public class NoticeServiceImpl implements NoticeService {
-	@Autowired private ClothDao clothDao;
-	
+public class AdminNoticeServiceImpl implements AdminNoticeService{
+	@Autowired private AdminNoticeDao noticeDao;
+
 	@Override
-	public List<Notice> getCloths() {
-		return clothDao.selectCloths();
+	public List<AdminNotice> getNotices() {
+		return noticeDao.selectNotices();
 	}
 
 	@Override
-	public boolean addCloth(Notice cloth) {
-		return clothDao.insertCloth(cloth) > 0;
+	public int addNotice(AdminNotice notice) {
+		return noticeDao.insertNotice(notice);
 	}
 
 	@Override
-	public boolean fixCloth(Notice cloth) {
-		return clothDao.updateCloth(cloth) > 0;
+	public int fixNotice(AdminNotice notice) {
+		return noticeDao.updateNotice(notice);
 	}
 
 	@Override
-	public boolean delCloth(int clothNum) {
-		return clothDao.deleteCloth(clothNum) > 0;
-	}
-	
-	@Override
-	public Notice findCloth(int clothNum) {
-		return clothDao.searchCloth(clothNum);
+	public int delNotice(int noticeNum) {
+		return noticeDao.deleteNotice(noticeNum);
 	}
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import kimmyeonghoe.cloth.user.dao.UserDao;
 import kimmyeonghoe.cloth.user.domain.User;
 
-@Service
+@Service("kimmyeonghoe.cloth.admin.notice.service")
 public class UserServiceImpl implements UserService {
 	@Autowired private UserDao userDao;
 

@@ -3,6 +3,7 @@ package kimmyeonghoe.cloth.admin.notice.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,38 +11,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import kimmyeonghoe.cloth.admin.cloth.domain.Cloth;
-import kimmyeonghoe.cloth.admin.cloth.service.ClothService;
+import kimmyeonghoe.cloth.admin.notice.domain.AdminNotice;
+import kimmyeonghoe.cloth.admin.notice.service.AdminNoticeService;
 
-@RestController
-@RequestMapping("admin/cloth")
-public class NoticeController{
-	@Autowired private ClothService clothService;
+@Controller
+@RequestMapping("/admin/notice")
+public class AdminNoticeController {
+	@Autowired private AdminNoticeService noticeService;
 	
-	@GetMapping("/list")
-	public List<Notice> getCloth() {
-		return clothService.getCloths();
+	@RequestMapping("/list")
+	public String getListAddr() {
+		return "admin/notice/list";
+	}
+	
+	@ResponseBody
+	@PostMapping("/list")
+	public List<AdminNotice> getList(){
+		return noticeService.getNotices();
 	}
 	
 	@PostMapping("/add")
-	public boolean addCloth(@RequestBody Notice cloth) {
-		return clothService.addCloth(cloth);
+	public int addNotice(@RequestBody AdminNotice notice) {
+		return noticeService.addNotice(notice);
 	}
 	
-	@PutMapping("/fix") 
-	public boolean fixCloth(@RequestBody Notice cloth) {
-		return clothService.fixCloth(cloth);
+	@PutMapping("/fix")
+	public int fixNotice(@RequestBody AdminNotice notice) {
+		return noticeService.fixNotice(notice);
 	}
 	
-	@DeleteMapping("/del/{clothNum}")
-	public boolean delCloth(@PathVariable int clothNum) {
-		return clothService.delCloth(clothNum);
-	}
-
-	@GetMapping("/find")
-	public Notice findeCloth(@PathVariable int clothNum) {
-		return clothService.findCloth(clothNum);
+	@DeleteMapping("/del/{noticeNum}")
+	public int delNotice(@PathVariable int noticeNum) {
+		return noticeService.delNotice(noticeNum);
 	}
 }
