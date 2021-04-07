@@ -2,10 +2,9 @@ package kimmyeonghoe.cloth.admin.notice.service;
 
 import java.util.List;
 
-import kimmyeonghoe.cloth.admin.cloth.domain.Cloth;
 
 public interface NoticeService {
-	List<Notice> getCloths();
+	List<Notice> getNotices();
 	boolean addCloth(Notice cloth);
 	boolean fixCloth(Notice cloth);
 	boolean delCloth(int clothNum);
