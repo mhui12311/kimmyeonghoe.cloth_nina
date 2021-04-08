@@ -18,18 +18,18 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	}
 
 	@Override
-	public boolean addQuestion(AdminQuestion question) {
-		return QuestionDao.insertQuestion(question) > 0;
+	public int addQuestion(AdminQuestion question) {
+		return QuestionDao.insertQuestion(question);
 	}
 
 	@Override
-	public boolean fixQuestion(AdminQuestion question) {
-		return QuestionDao.updateQuestion(question) > 0;
+	public int fixQuestion(AdminQuestion question) {
+		return QuestionDao.updateQuestion(question);
 	}
 
 	@Override
-	public boolean delQuestion(int questionNum) {
-		return QuestionDao.deleteQuestion(questionNum) > 0;
+	public int delQuestion(int questionNum) {
+		return QuestionDao.deleteQuestion(questionNum);
 	}
 	
 	@Override

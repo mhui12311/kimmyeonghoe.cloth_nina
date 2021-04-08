@@ -15,11 +15,11 @@ function isVal(field){
 }
 
 function getList(){
+	$('#questionContent').empty();
 	$.ajax({
-		method:'post',
+		type:'post',
 		url:"<%=request.getContextPath() %>/admin/question/list"
-	})
-	.done(questions => {
+	}).done(questions => {
 		if(questions.length) {
 			let questionList = [];
 			
@@ -52,19 +52,30 @@ function init(){
 
 	$('#delQuestionBtn').click(() => {
 		if(isVal($('#questionNum:checked'))) {
-			$('#delQuestionModal').modal();
-		} else alert('삭제할 문의를 선택해주세요.', false);
+			$('#bodyMsg').text('삭제하시겠습니까?');
+			$('#commonModal').modal();
+		} else {
+			$('#bodyMsg').text('삭제할 문의를 선택하세요.')
+			$('#commonModal').modal();
+		}
 	});
 	
-	$('#delQuestionOkBtn').click(() => {
+	$('#okBtn').click(() => {
+		var delNum = $('#questionNum:checked').val();
+		alert($('#questionNum:checked').val());
 		$.ajax({
-			url: `admin/question/del/\${$('#questionNum:checked').val()}`,
-			method: 'delete'
-		}).done(cnt => {
-			$('#questionContent');			
-			$('#delQuestionModal').modal('hide');
-		}).fail(err => alert('문의를 삭제하지 못했습니다.'), false);
+			url:`${pageContext.request.contextPath}/admin/question/del/\${delNum}`,
+			method: 'post'
+		}).done(result => {
+			if(result != null){
+				getList();	
+			}
+		});
 	});
+	
+	$('#okBtn').click(()=> {
+		$('#commonModal').modal('hide');
+	})
 }
 $(init);
 </script>	
@@ -102,16 +113,15 @@ $(init);
 		            </p>
 		         </div>
 				<nav>
-					<a href='#'><button class='btn btn-secondary float-right'>글쓰기</button></a>
-					<a href='#'><button type='button' class='btn btn-secondary float-right' onclick='location.href="./help/04.html"'>수정</button></a>
-					<button type='button' class='btn btn-secondary float-right mr-1' id='delQuestionBtn'
-						data-toggle='modal' data-target='#delQuestionModal'>삭제</button>
+					<a href="<%=request.getContextPath() %>/admin/question/add"><button class='btn btn-secondary float-right'>글쓰기</button></a>
+					<a href="<%=request.getContextPath() %>/admin/question/fix"><button type='button' class='btn btn-secondary float-right'>수정</button></a>
+					<button type='button' class='btn btn-secondary float-right mr-1' id='delQuestionBtn'>삭제</button>
 				</nav>	         
 			</form>            	
        </div>
    </div>
 </div>
-<div id='delQuestionModal' class='modal fade' tabindex='-1'>
+<div id='commonModal' class='modal fade' tabindex='-1'>
 	<div class='modal-dialog'>
 		<div class='modal-content'>
 			<div class='modal-header'>			
@@ -120,11 +130,11 @@ $(init);
 				</button>
 			</div>
 			<div class='modal-body'>
-				<p>상품 문의를 삭제하시겠습니까?</p>
+				<p id='bodyMsg'></p>
 			</div>
 			<div class='modal-footer'>
 				<button type='button' class='btn btn-secondary' data-dismiss='modal'>아니오</button>
-				<button type='button' class='btn btn-secondary' id='delQuestionOkBtn'>예</button>
+				<button type='button' class='btn btn-secondary' id='okBtn'>예</button>
 			</div>
 		</div>
 	</div>

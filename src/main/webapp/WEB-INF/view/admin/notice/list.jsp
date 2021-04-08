@@ -17,7 +17,6 @@ function getList(){
 			$.each(notices, (idx, notice) => {
 				noticeList.unshift(
 					`<tr>
-						<th></th>
 						<th>
 							<div class='form-check form-check-inline'>
 								<input type='radio' class='form-check-input' 
@@ -25,7 +24,7 @@ function getList(){
 								<label class='form-check-label' for='noticeNum'>&nbsp; \${notice.noticeNum}</label>
 							</div>
 						</th>
-						<td>\${notice.title}</td>
+						<td>\${notice.title}</td>						
 						<td>\${notice.regDate}</td>
 					</tr>`
 				);
@@ -33,7 +32,7 @@ function getList(){
 			
 			$('#noticeContent').append(noticeList.join(''));
 		} else {
-			$('#noticeContent').append('<tr><td colspan=4 class=text-center>x.</td></tr>');
+			$('#noticeContent').append('<tr><td colspan=3 class=text-center>x.</td></tr>');
 		}
 	});
 }
@@ -47,6 +46,7 @@ function init(){
 	$('#delQBtn').click(()=>{
 		$('#delQModal').modal();
 	})
+	
 }
 $(init);
 </script>	
@@ -86,9 +86,8 @@ $(init);
 				<div class='col-3 d-flex justify-content-start'><button type='button' class='btn btn-outline-secondary mr-1' >상단</button></div>
 				<div class='col d-flex justify-content-end'>
 					<button type='button' class='btn btn-outline-secondary mr-1' id='delQBtn'>삭제</button>
-					<button type='button' class='btn btn-outline-secondary mr-1' onclick='location.href="./03.html"'>수정</button>
-						<button type='button' class='btn btn-outline-secondary mr-1' onclick='location.href="./02.html"'>작성</button>       			
-					
+					<button type='button' class='btn btn-outline-secondary mr-1' onclick='location.href=".fix.jsp"'>수정</button>
+					<button type='button' class='btn btn-outline-secondary mr-1' onclick='location.href=".add.jsp"'>작성</button>       			
 				</div>
 			</div>
 		</div>

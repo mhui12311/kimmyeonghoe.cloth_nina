@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,6 +23,11 @@ public class AdminQuestionController{
 	public String getListAddr() {
 		return "admin/question/list";
 	}
+
+	@RequestMapping("/add")
+	public String getAddAddr() {
+		return "admin/question/add";
+	}
 	
 	@ResponseBody
 	@PostMapping("/list")
@@ -32,17 +36,22 @@ public class AdminQuestionController{
 	}
 	
 	@PostMapping("/add")
-	public boolean addQuestion(@RequestBody AdminQuestion question) {
+	public int addQuestion(@RequestBody AdminQuestion question) {
 		return questionService.addQuestion(question);
 	}
 	
 	@PutMapping("/fix")
-	public boolean fixQuestion(@RequestBody AdminQuestion question) {
+	public int fixQuestion(@RequestBody AdminQuestion question) {
 		return questionService.fixQuestion(question);
 	}
 	
-	@DeleteMapping("/del/{questionNum}")
-	public boolean delQuestion(@PathVariable int questionNum) {
-		return questionService.delQuestion(questionNum);
+	@ResponseBody
+	@PostMapping("/del/{questionNum}")
+	public String delQuestion(@PathVariable int questionNum) {
+		String result = "";
+		if (questionService.delQuestion(questionNum) != 0) {
+			result = "deleted";
+		}		
+		return result;
 	}
 }

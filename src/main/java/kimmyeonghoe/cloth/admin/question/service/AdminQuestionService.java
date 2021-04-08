@@ -6,8 +6,8 @@ import kimmyeonghoe.cloth.admin.question.domain.AdminQuestion;
 
 public interface AdminQuestionService {
 	List<AdminQuestion> getQuestions();
-	boolean addQuestion(AdminQuestion question);
-	boolean fixQuestion(AdminQuestion question);
-	boolean delQuestion(int questionNum);
+	int addQuestion(AdminQuestion question);
+	int fixQuestion(AdminQuestion question);
+	int delQuestion(int questionNum);
 	AdminQuestion findQuestion(int questionNum);
 }

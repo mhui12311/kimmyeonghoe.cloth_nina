@@ -14,4 +14,13 @@
       <result property='regDate' column='reg_date'/>
    </resultMap>
    
+	<insert id='insertNotice'>
+		insert into notices(notice_num, title, content, reg_date)
+		values (notice_noticenum_seq.nextval, #{title}, #{content}, #{regDate})
+	</insert>
+	
+	<delete id='deleteNotice'>
+		delete notices
+		where notice_num = #{noticeNum}
+	</delete>   
 </mapper>
